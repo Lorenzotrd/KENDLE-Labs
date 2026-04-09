@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KENDLE Labs — Fractional GTM for Web3</title>
+  <meta name="description" content="Your growth team, powered by AI. Fractional GTM partner for Web3 projects. From PMF to scale.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FFFFFF;
+      --bg-muted: #F5F5F5;
+      --bg-dark: #0A0F1A;
+      --green: #00CC6A;
+      --green-light: #E6FFF2;
+      --green-bright: #00FF88;
+      --text: #0A0F1A;
+      --text-secondary: #6B7280;
+      --border: #E5E7EB;
+      --border-light: #F0F0F0;
+      --font-h: 'Space Grotesk', sans-serif;
+      --font-b: 'DM Sans', sans-serif;
+      --radius: 16px;
+      --max-w: 1120px;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-b); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 100; padding: 10px 12px;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border); border-radius: 100px;
+      display: flex; align-items: center; gap: 6px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+
+    .nav__logo {
+      font-family: var(--font-h); font-weight: 700; font-size: 1rem;
+      padding: 0 16px 0 8px; white-space: nowrap;
+    }
+
+    .nav__logo em { font-style: normal; color: var(--green); font-weight: 500; font-size: 0.85rem; }
+
+    .nav__links { display: flex; align-items: center; gap: 2px; }
+
+    .nav__link {
+      font-size: 0.82rem; font-weight: 500; color: var(--text-secondary);
+      padding: 8px 14px; border-radius: 100px; transition: all 0.2s;
+    }
+
+    .nav__link:hover, .nav__link--active { color: var(--text); background: var(--bg-muted); }
+
+    .nav__cta {
+      margin-left: 6px; padding: 8px 20px;
+      background: var(--bg-dark); color: #fff;
+      font-family: var(--font-h); font-weight: 600; font-size: 0.82rem;
+      border-radius: 100px; border: none; cursor: pointer;
+      transition: box-shadow 0.2s; white-space: nowrap;
+    }
+
+    .nav__cta:hover { box-shadow: 0 4px 16px rgba(10,15,26,0.18); }
+
+    @media (max-width: 860px) {
+      .nav__links { display: none; }
+    }
+
+    /* ===== GRID BG ===== */
+    .grid-bg {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+
+    .grid-bg::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.045) 1px, transparent 1px);
+      background-size: 72px 72px;
+    }
+
+    .grid-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 50%, transparent 40%, var(--bg) 100%);
+    }
+
+    /* ===== FLOATING CARDS ===== */
+    .hero-floats {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;
+    }
+
+    .float-card {
+      position: absolute; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      animation: float-drift 6s ease-in-out infinite;
+    }
+
+    .float-card svg { opacity: 0.95; width: 60%; height: 60%; }
+
+    .float-card--sm { width: 56px; height: 56px; border-radius: 13px; }
+    .float-card--md { width: 72px; height: 72px; border-radius: 16px; }
+    .float-card--lg { width: 88px; height: 88px; border-radius: 18px; }
+
+    .float-card--dark { background: var(--bg-dark); }
+    .float-card--white { background: #fff; }
+    .float-card--green { background: var(--green); }
+    .float-card--blue { background: #0A66C2; }
+    .float-card--purple { background: #5865F2; }
+    .float-card--sky { background: #2AABEE; }
+    .float-card--red { background: #EA4335; }
+    .float-card--insta { background: linear-gradient(135deg, #FEDA75 0%, #FA7E1E 25%, #D62976 50%, #962FBF 75%, #4F5BD5 100%); }
+
+    .fc1 { top: 22%; left: 6%; animation-delay: 0s; }
+    .fc2 { top: 16%; right: 7%; animation-delay: -1.5s; }
+    .fc3 { bottom: 28%; left: 10%; animation-delay: -3s; }
+    .fc4 { bottom: 22%; right: 5%; animation-delay: -2s; }
+    .fc5 { top: 50%; left: 18%; animation-delay: -4s; }
+    .fc6 { bottom: 34%; right: 16%; animation-delay: -1s; }
+    .fc7 { top: 40%; right: 12%; animation-delay: -2.5s; }
+
+    @keyframes float-drift {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-floats { display: none; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center; padding: 160px 24px 80px;
+      position: relative; z-index: 1;
+    }
+
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px 6px 8px; border-radius: 100px;
+      background: var(--green-light); font-size: 0.82rem; font-weight: 500;
+      color: var(--text); margin-bottom: 28px;
+    }
+
+    .hero__badge-dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--green); display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 0.65rem; font-weight: 700;
+    }
+
+    .hero__badge a { font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+
+    .hero h1 {
+      font-family: var(--font-h); font-weight: 700;
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      letter-spacing: -0.035em; line-height: 1.08;
+      margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto;
+    }
+
+    .hero h1 .highlight {
+      display: inline-block; padding: 2px 16px; border-radius: 12px;
+      background: var(--green-light); color: var(--green);
+      font-style: italic;
+    }
+
+    .hero__sub {
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
+      color: var(--text-secondary); max-width: 520px;
+      margin: 0 auto 36px; line-height: 1.65;
+    }
+
+    .hero__ctas { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; background: var(--bg-dark); color: #fff;
+      font-family: var(--font-h); font-weight: 600; font-size: 0.9rem;
+      border-radius: 100px; border: none; cursor: pointer;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { box-shadow: 0 6px 24px rgba(10,15,26,0.18); transform: translateY(-1px); }
+
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; background: var(--bg);
+      border: 1px solid var(--border); color: var(--text);
+      font-family: var(--font-h); font-weight: 600; font-size: 0.9rem;
+      border-radius: 100px; cursor: pointer; transition: all 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--text); }
+
+    .btn-secondary svg { width: 16px; height: 16px; }
+
+    /* ===== LOGOS ===== */
+    .logos {
+      padding: 48px 0 64px; text-align: center;
+      border-bottom: 1px solid var(--border-light);
+      overflow: hidden; position: relative;
+    }
+
+    .logos__label {
+      font-family: var(--font-h); font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-secondary); margin-bottom: 32px;
+    }
+
+    .logos__track {
+      display: flex; width: max-content;
+      animation: logo-scroll 28s linear infinite;
+    }
+
+    .logos:hover .logos__track { animation-play-state: paused; }
+
+    .logos__set {
+      display: flex; align-items: center;
+      gap: clamp(48px, 6vw, 80px);
+      padding: 0 clamp(24px, 4vw, 40px);
+    }
+
+    .logos__item {
+      display: flex; align-items: center; justify-content: center;
+      height: 48px; flex-shrink: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+      opacity: 0.55;
+    }
+
+    .logos__item img {
+      max-height: 42px; max-width: 160px;
+      width: auto; height: auto;
+      object-fit: contain; display: block;
+      /* Invert white logos to dark for white background */
+      filter: invert(1) brightness(0.2);
+    }
+
+    .logos__item:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .logos__item:hover img {
+      filter: invert(1) brightness(0);
+    }
+
+    /* Fade edges */
+    .logos::before, .logos::after {
+      content: ''; position: absolute; top: 0; bottom: 0;
+      width: 120px; z-index: 2; pointer-events: none;
+    }
+    .logos::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--bg) 0%, transparent 100%);
+    }
+    .logos::after {
+      right: 0;
+      background: linear-gradient(-90deg, var(--bg) 0%, transparent 100%);
+    }
+
+    @keyframes logo-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== SECTION SHARED ===== */
+    .section { padding: clamp(72px, 10vh, 120px) 24px; }
+    .section--muted { background: var(--bg-muted); }
+
+    .section__label {
+      display: inline-block; font-family: var(--font-h);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-secondary);
+      padding: 5px 14px; background: var(--bg-muted);
+      border: 1px solid var(--border); border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .section--muted .section__label { background: var(--bg); }
+
+    .section__title {
+      font-family: var(--font-h); font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      letter-spacing: -0.03em; line-height: 1.12;
+      margin-bottom: 12px;
+    }
+
+    .section__sub {
+      font-size: 1.05rem; color: var(--text-secondary);
+      line-height: 1.6; max-width: 520px;
+    }
+
+    .section__header { text-align: center; margin-bottom: 56px; }
+    .section__header .section__sub { margin: 0 auto; }
+
+    /* ===== PROBLEM ===== */
+    .problem__text {
+      max-width: 640px; margin: 0 auto; text-align: center;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-secondary); line-height: 1.75;
+    }
+
+    .problem__text strong { color: var(--text); font-weight: 600; }
+
+    /* ===== PILLARS ===== */
+    .pillars__grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+
+    .pillar-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .section--muted .pillar-card { background: var(--bg); }
+
+    .pillar-card:hover {
+      border-color: var(--green); box-shadow: 0 4px 24px rgba(0,204,106,0.08);
+    }
+
+    .pillar-card__step {
+      font-family: var(--font-h); font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 12px;
+    }
+
+    .pillar-card h3 {
+      font-family: var(--font-h); font-size: 1.1rem; font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 4px;
+    }
+
+    .pillar-card__sub {
+      font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 18px;
+    }
+
+    .pillar-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+    .pillar-card li {
+      font-size: 0.82rem; color: var(--text-secondary);
+      padding-left: 16px; position: relative;
+    }
+
+    .pillar-card li::before {
+      content: ''; position: absolute; left: 0; top: 7px;
+      width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+    }
+
+    @media (max-width: 1024px) { .pillars__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .pillars__grid { grid-template-columns: 1fr; } }
+
+    /* ===== ADS BANNER ===== */
+    .ads-banner {
+      background: var(--bg-dark); border-radius: var(--radius);
+      padding: clamp(48px, 6vw, 72px);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+      align-items: center; overflow: hidden; position: relative;
+    }
+
+    .ads-banner::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 400px; height: 400px; background: var(--green-bright);
+      border-radius: 50%; filter: blur(160px); opacity: 0.07;
+    }
+
+    .ads-banner h2 {
+      font-family: var(--font-h); font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; color: #fff; letter-spacing: -0.03em; line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .ads-banner h2 em { font-style: italic; color: var(--green-bright); }
+
+    .ads-banner p {
+      color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.65;
+      margin-bottom: 28px; max-width: 420px;
+    }
+
+    .ads-banner__cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px; background: var(--green-bright); color: var(--bg-dark);
+      font-family: var(--font-h); font-weight: 700; font-size: 0.9rem;
+      border-radius: 100px; border: none; cursor: pointer; transition: all 0.2s;
+    }
+
+    .ads-banner__cta:hover { box-shadow: 0 0 32px rgba(0,255,136,0.25); }
+
+    .ads-platforms { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .ads-plat {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 20px 18px; transition: border-color 0.2s;
+    }
+
+    .ads-plat:hover { border-color: rgba(0,255,136,0.2); }
+
+    .ads-plat__name {
+      font-family: var(--font-h); font-weight: 600; font-size: 0.88rem;
+      color: #fff; margin-bottom: 4px;
+    }
+
+    .ads-plat__desc { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.45; }
+
+    @media (max-width: 768px) {
+      .ads-banner { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    /* ===== DIFFERENT ===== */
+    .diff__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+    .diff-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 32px 28px; text-align: center; background: var(--bg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .diff-card:hover { border-color: var(--green); box-shadow: 0 4px 24px rgba(0,204,106,0.06); }
+
+    .diff-card__icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green-light); display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 16px;
+    }
+
+    .diff-card h3 {
+      font-family: var(--font-h); font-size: 1.05rem; font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 8px;
+    }
+
+    .diff-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
+
+    @media (max-width: 768px) { .diff__grid { grid-template-columns: 1fr; } }
+
+    /* ===== CASE STUDIES ===== */
+    .cases { position: relative; }
+
+    .cases__tabs {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin-bottom: 40px;
+    }
+
+    .cases__tab {
+      font-family: var(--font-h); font-weight: 600; font-size: 0.85rem;
+      padding: 10px 20px; border-radius: 100px;
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--text-secondary); cursor: pointer;
+      transition: all 0.25s ease; white-space: nowrap;
+    }
+
+    .cases__tab:hover { border-color: var(--text); color: var(--text); }
+
+    .cases__tab.is-active {
+      background: var(--bg-dark); color: var(--green-bright);
+      border-color: var(--bg-dark);
+    }
+
+    .cases__viewport {
+      position: relative; border-radius: 24px; overflow: hidden;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+    }
+
+    .case-panel {
+      display: none;
+      animation: case-in 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .case-panel.is-active { display: block; }
+
+    @keyframes case-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .case-panel__top {
+      background: #F5F5F5; padding: 48px clamp(28px,4vw,56px);
+      position: relative; overflow: hidden;
+    }
+
+    .case-panel__top::before {
+      display: none;
+    }
+
+    .case-panel__category {
+      font-family: var(--font-h); font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+
+    .case-panel__title {
+      font-family: var(--font-h); font-weight: 700;
+      font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+      letter-spacing: -0.025em; line-height: 1.25;
+      color: var(--text); max-width: 720px; margin-bottom: 36px;
+      position: relative; z-index: 1;
+    }
+
+    .case-panel__stats {
+      display: flex; flex-wrap: wrap; gap: 0;
+      position: relative; z-index: 1;
+    }
+
+    .case-stat {
+      flex: 1; min-width: 140px; padding-right: 28px;
+      border-right: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .case-stat:last-child { border-right: none; padding-right: 0; }
+    .case-stat + .case-stat { padding-left: 28px; }
+
+    .case-stat__num {
+      font-family: var(--font-h); font-weight: 700;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      color: var(--text); letter-spacing: -0.03em; line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .case-stat__label {
+      font-size: 0.78rem; color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    .case-panel__bottom {
+      background: #fff; padding: 32px clamp(28px,4vw,56px) 28px;
+    }
+
+    .case-panel__tags {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+    }
+
+    .case-tag {
+      font-family: var(--font-h); font-size: 0.72rem; font-weight: 600;
+      padding: 6px 14px; border-radius: 100px;
+      background: rgba(0,255,136,0.07); color: #00cc6d;
+    }
+
+    .case-panel__desc {
+      font-size: 0.95rem; color: var(--text-secondary);
+      line-height: 1.65; max-width: 780px; margin-bottom: 28px;
+    }
+
+    .cases__dots {
+      display: flex; gap: 8px;
+      padding: 0 clamp(28px,4vw,56px) 28px;
+      background: #fff;
+    }
+
+    .cases__dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--border); border: none;
+      cursor: pointer; padding: 0;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .cases__dot.is-active {
+      width: 24px; height: 8px; border-radius: 4px;
+      background: var(--green);
+    }
+
+    .cases__dot:hover:not(.is-active) { background: var(--text-secondary); }
+
+    @media (max-width: 600px) {
+      .case-panel__stats { flex-direction: column; gap: 20px; }
+      .case-stat {
+        border-right: none; padding-right: 0; padding-left: 0 !important;
+        border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 16px;
+      }
+      .case-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    }
+
+    /* ===== STATS ===== */
+    .stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    .stat-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 36px 24px; text-align: center; background: var(--bg);
+      transition: border-color 0.2s;
+    }
+
+    .stat-card:hover { border-color: var(--green); }
+
+    .stat-card__number {
+      font-family: var(--font-h); font-size: clamp(2rem, 3.5vw, 2.6rem);
+      font-weight: 700; color: var(--text); letter-spacing: -0.03em;
+      margin-bottom: 6px; line-height: 1;
+    }
+
+    .stat-card__label { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.45; }
+    .stat-card__label span { opacity: 0.5; font-size: 0.78rem; }
+
+    @media (max-width: 1024px) { .stats__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .stats__grid { grid-template-columns: 1fr; } }
+
+    /* ===== TEAM ===== */
+    .team__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; max-width: 880px; margin: 0 auto;
+    }
+
+    .team-card {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 36px 28px; text-align: center; background: var(--bg);
+      transition: border-color 0.2s;
+    }
+
+    .team-card:hover { border-color: var(--green); }
+
+    .team-card__avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--green-light); display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 16px;
+      font-family: var(--font-h); font-weight: 700; font-size: 1rem; color: var(--green);
+    }
+
+    .team-card__name { font-family: var(--font-h); font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
+    .team-card__role { font-size: 0.82rem; color: var(--green); font-weight: 500; margin-bottom: 10px; }
+    .team-card__desc { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 6px; }
+    .team-card__tagline { font-size: 0.78rem; color: var(--text-secondary); font-style: italic; opacity: 0.6; }
+
+    @media (max-width: 768px) { .team__grid { grid-template-columns: 1fr; max-width: 360px; } }
+
+    /* ===== BOTTOM CTA ===== */
+    .cta-bottom {
+      text-align: center; padding: clamp(72px, 10vh, 120px) 24px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .cta-bottom h2 {
+      font-family: var(--font-h); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px;
+    }
+
+    .cta-bottom h2 .highlight {
+      display: inline-block; padding: 2px 14px; border-radius: 10px;
+      background: var(--green-light); color: var(--green); font-style: italic;
+    }
+
+    .cta-bottom p {
+      font-size: 1.05rem; color: var(--text-secondary);
+      margin-bottom: 32px; max-width: 460px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 40px 24px; border-top: 1px solid var(--border-light);
+    }
+
+    .footer__inner {
+      max-width: var(--max-w); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 20px;
+    }
+
+    .footer__brand { display: flex; flex-direction: column; gap: 2px; }
+
+    .footer__logo {
+      font-family: var(--font-h); font-weight: 700; font-size: 1rem;
+    }
+
+    .footer__logo em { font-style: normal; color: var(--green); font-weight: 500; font-size: 0.82rem; }
+
+    .footer__sub { font-size: 0.78rem; color: var(--text-secondary); }
+    .footer__sub a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+
+    .footer__links { display: flex; align-items: center; gap: 20px; }
+
+    .footer__link {
+      font-size: 0.82rem; color: var(--text-secondary);
+      display: flex; align-items: center; gap: 5px; transition: color 0.2s;
+    }
+
+    .footer__link:hover { color: var(--text); }
+    .footer__link svg { width: 14px; height: 14px; }
+
+    @media (max-width: 600px) {
+      .footer__inner { flex-direction: column; text-align: center; }
+      .footer__links { justify-content: center; }
+    }
+
+    /* ===== FADE IN ===== */
+    .fade-in {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .fade-in.is-visible { opacity: 1; transform: translateY(0); }
+    .fd1 { transition-delay: 0.08s; } .fd2 { transition-delay: 0.16s; }
+    .fd3 { transition-delay: 0.24s; } .fd4 { transition-delay: 0.32s; }
+
+    /* ===== DIVIDER ===== */
+    .divider { height: 1px; background: var(--border-light); }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav__logo">KENDLE <em>Labs</em></div>
+    <div class="nav__links">
+      <a href="#pillars" class="nav__link nav__link--active">Services</a>
+      <a href="#ads" class="nav__link">Paid Ads</a>
+      <a href="#stats" class="nav__link">Track Record</a>
+      <a href="#team" class="nav__link">Team</a>
+    </div>
+    <a href="https://calendly.com" target="_blank" rel="noopener" class="nav__cta">Book a Call</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="grid-bg"></div>
+    <div class="hero-floats">
+      <!-- X / Twitter -->
+      <div class="float-card float-card--md float-card--dark fc1">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </div>
+      <!-- LinkedIn -->
+      <div class="float-card float-card--lg float-card--blue fc2">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 110-4.128 2.064 2.064 0 010 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </div>
+      <!-- Telegram -->
+      <div class="float-card float-card--md float-card--sky fc3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </div>
+      <!-- Discord -->
+      <div class="float-card float-card--lg float-card--purple fc4">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128c.12-.094.246-.194.373-.292a.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419s.956-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419s.955-2.419 2.157-2.419c1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      </div>
+      <!-- TikTok -->
+      <div class="float-card float-card--sm float-card--dark fc5">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43V8.68a8.16 8.16 0 004.77 1.52V6.76a4.85 4.85 0 01-1.84-.07z"/></svg>
+      </div>
+      <!-- Instagram -->
+      <div class="float-card float-card--md float-card--insta fc6">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.332.014 7.052.072 2.695.272.273 2.69.073 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.332 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </div>
+      <!-- Email -->
+      <div class="float-card float-card--sm float-card--red fc7">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+    </div>
+
+    <!-- Hero text on top -->
+    <div style="position:relative;z-index:2;">
+      <div class="fade-in">
+        <div class="hero__badge">
+          <span class="hero__badge-dot">AI</span>
+          Fractional GTM powered by <a href="#pillars">AI workflows</a> &rsaquo;
+        </div>
+      </div>
+      <h1 class="fade-in fd1">A growth team that<br>works like an <span class="highlight">Engine</span></h1>
+      <p class="hero__sub fade-in fd2">We plug into your team as a fractional GTM partner. From PMF to scale — AI finds the opportunities, we execute them.</p>
+      <div class="hero__ctas fade-in fd3">
+        <a href="https://calendly.com" target="_blank" rel="noopener" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Book a Discovery Call
+        </a>
+        <a href="mailto:team@kendle.xyz" class="btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Logos -->
+  <div class="logos fade-in">
+    <p class="logos__label">Trusted by</p>
+    <div class="logos__track">
+      <!-- Set 1 -->
+      <div class="logos__set">
+        <div class="logos__item"><img src="logos/tevaera.png" alt="Tevaera"></div>
+        <div class="logos__item"><img src="logos/reveel.png" alt="Reveel"></div>
+        <div class="logos__item"><img src="logos/bloom.png" alt="Bloom"></div>
+        <div class="logos__item"><img src="logos/zilliqa.png" alt="Zilliqa"></div>
+        <div class="logos__item"><img src="logos/kaisar.png" alt="Kaisar"></div>
+        <div class="logos__item"><img src="logos/bitscrunch.png" alt="Bitscrunch"></div>
+      </div>
+      <!-- Set 2 (duplicate for seamless loop) -->
+      <div class="logos__set">
+        <div class="logos__item"><img src="logos/tevaera.png" alt="Tevaera"></div>
+        <div class="logos__item"><img src="logos/reveel.png" alt="Reveel"></div>
+        <div class="logos__item"><img src="logos/bloom.png" alt="Bloom"></div>
+        <div class="logos__item"><img src="logos/zilliqa.png" alt="Zilliqa"></div>
+        <div class="logos__item"><img src="logos/kaisar.png" alt="Kaisar"></div>
+        <div class="logos__item"><img src="logos/bitscrunch.png" alt="Bitscrunch"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Problem -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__label">The Problem</div>
+        <p class="problem__text">
+          Most Web3 projects launch without a real GTM. They build the product, list the token, and hope for the best.
+          <strong>6 months later — no users, no volume, no growth.</strong> Not because the product is bad. Because nobody built the engine.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Pillars -->
+  <section class="section section--muted" id="pillars">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__label">What We Do</div>
+        <h2 class="section__title">Four pillars of growth</h2>
+        <p class="section__sub">A full-stack GTM engine, not a checklist.</p>
+      </div>
+      <div class="pillars__grid">
+        <div class="pillar-card fade-in fd1">
+          <div class="pillar-card__step">Step 01</div>
+          <h3>Find your market</h3>
+          <p class="pillar-card__sub">PMF discovery & growth strategy</p>
+          <ul>
+            <li>ICP definition & market mapping</li>
+            <li>Competitor & landscape analysis</li>
+            <li>Go-to-market roadmap</li>
+            <li>Positioning & messaging</li>
+          </ul>
+        </div>
+        <div class="pillar-card fade-in fd2">
+          <div class="pillar-card__step">Step 02</div>
+          <h3>Reach the right people</h3>
+          <p class="pillar-card__sub">Acquisition & lead generation</p>
+          <ul>
+            <li>AI-powered lead sourcing at scale</li>
+            <li>Paid ads management & optimization</li>
+            <li>Outbound campaigns (X, email, LinkedIn)</li>
+            <li>Pipeline management & CRM</li>
+          </ul>
+        </div>
+        <div class="pillar-card fade-in fd3">
+          <div class="pillar-card__step">Step 03</div>
+          <h3>Convert attention into action</h3>
+          <p class="pillar-card__sub">KOL management & content</p>
+          <ul>
+            <li>150+ crypto KOL network</li>
+            <li>KOL sourcing, briefing & reporting</li>
+            <li>Content creation (visual + copy)</li>
+            <li>Social media management</li>
+          </ul>
+        </div>
+        <div class="pillar-card fade-in fd4">
+          <div class="pillar-card__step">Step 04</div>
+          <h3>Scale what works</h3>
+          <p class="pillar-card__sub">Systems, data & optimization</p>
+          <ul>
+            <li>AI-optimized campaign performance</li>
+            <li>Growth analytics & dashboards</li>
+            <li>Playbook documentation for your team</li>
+            <li>From fractional to full handoff</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paid Ads -->
+  <section class="section" id="ads">
+    <div class="container">
+      <div class="ads-banner fade-in">
+        <div>
+          <div class="section__label" style="background:rgba(0,255,136,0.1);border-color:rgba(0,255,136,0.2);color:var(--green-bright);">Paid Ads</div>
+          <h2>Paid Ads,<br><em>managed by AI.</em></h2>
+          <p>We run and optimize your paid campaigns across every major crypto ad platform. AI handles bidding, targeting, and creative rotation.</p>
+          <a href="https://calendly.com" target="_blank" rel="noopener" class="ads-banner__cta">Talk Paid Ads →</a>
+        </div>
+        <div class="ads-platforms">
+          <div class="ads-plat">
+            <div class="ads-plat__name">X / Twitter Ads</div>
+            <p class="ads-plat__desc">Promoted posts, follower campaigns targeting crypto audiences</p>
+          </div>
+          <div class="ads-plat">
+            <div class="ads-plat__name">Meta & Instagram</div>
+            <p class="ads-plat__desc">Retargeting, lookalike audiences & creative testing</p>
+          </div>
+          <div class="ads-plat">
+            <div class="ads-plat__name">Google & YouTube</div>
+            <p class="ads-plat__desc">Search, display & video ads for qualified traffic</p>
+          </div>
+          <div class="ads-plat">
+            <div class="ads-plat__name">Crypto-Native DSPs</div>
+            <p class="ads-plat__desc">Coinzilla, Bitmedia, A-Ads & programmatic networks</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- Different -->
+  <section class="section" id="different">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__label">Why Us</div>
+        <h2 class="section__title">How we're different</h2>
+      </div>
+      <div class="diff__grid">
+        <div class="diff-card fade-in fd1">
+          <div class="diff-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00CC6A" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Not an agency</h3>
+          <p>We're in your Slack, your calls, your strategy docs. We operate like your in-house growth team.</p>
+        </div>
+        <div class="diff-card fade-in fd2">
+          <div class="diff-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00CC6A" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>AI at every step</h3>
+          <p>From lead sourcing to content scheduling — AI handles the grunt work. You focus on strategy.</p>
+        </div>
+        <div class="diff-card fade-in fd3">
+          <div class="diff-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00CC6A" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Web3 native</h3>
+          <p>In crypto since 2021. We know the ecosystem, the KOLs, the exchanges, the meta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies -->
+  <section class="section cases" id="cases">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__label">Case Studies</div>
+        <h2 class="section__title">Results we've driven.</h2>
+        <p class="section__sub">Four stories from teams we've scaled — from pre-launch to post-token.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="cases__tabs fade-in fd1">
+        <button class="cases__tab is-active" data-case="0">Stablecoin Payments</button>
+        <button class="cases__tab" data-case="1">Social Finance</button>
+        <button class="cases__tab" data-case="2">Gaming Infra</button>
+        <button class="cases__tab" data-case="3">Compute Network</button>
+      </div>
+
+      <!-- Viewport -->
+      <div class="cases__viewport fade-in fd2">
+
+        <!-- Case 1 -->
+        <div class="case-panel is-active" data-panel="0">
+          <div class="case-panel__top">
+            <div class="case-panel__category">Stablecoin Payment Infrastructure</div>
+            <h3 class="case-panel__title">Full-stack launch system combining product mechanics with multi-channel acquisition.</h3>
+            <div class="case-panel__stats">
+              <div class="case-stat">
+                <div class="case-stat__num">250K</div>
+                <div class="case-stat__label">new users</div>
+              </div>
+              <div class="case-stat">
+                <div class="case-stat__num">$26M</div>
+                <div class="case-stat__label">deposits</div>
+              </div>
+              <div class="case-stat">
+                <div class="case-stat__num">5M</div>
+                <div class="case-stat__label">transactions</div>
+              </div>
+              <div class="case-stat">
+                <div class="case-stat__num">$200M</div>
+                <div class="case-stat__label">transaction volume</div>
+              </div>
+            </div>
+          </div>
+          <div class="case-panel__bottom">
+            <div class="case-panel__tags">
+              <span class="case-tag">Growth Engineering</span>
+              <span class="case-tag">Influencer Partnerships</span>
+              <span class="case-tag">Paid Media</span>
+            </div>
+            <p class="case-panel__desc">Specialist team optimized for activation: deposit velocity, transaction frequency, retention. Every growth lever was instrumented and iterated on weekly to compound results.</p>
+          </div>
+        </div>
+
+        <!-- Case 2 -->
+        <div class="case-panel" data-panel="1">
+          <div class="case-panel__top">
+            <div class="case-panel__category">Social Finance Network</div>
+            <h3 class="case-panel__title">Pre-launch growth system using gamified mechanics and targeted partnerships.</h3>
+            <div class="case-panel__stats">
+              <div class="case-stat">
+                <div class="case-stat__num">300K</div>
+                <div class="case-stat__label">waitlist</div>
+              </div>
+              <div class="case-stat">
+                <div class="case-stat__num">10M</div>
+                <div class="case-stat__label">impressions</div>
+              </div>
+            </div>
+          </div>
+          <div class="case-panel__bottom">
+            <div class="case-panel__tags">
+              <span class="case-tag">Growth Engineering</span>
+              <span class="case-tag">Influencer Partnerships</span>
+              <span class="case-tag">Content</span>
+            </div>
+            <p class="case-panel__desc">Organic growth rate exceeded 1.5x through systematic validation and specialist-led execution. Gamified referral loops drove compounding waitlist signups without paid spend.</p>
+          </div>
+        </div>
+
+        <!-- Case 3 -->
+        <div class="case-panel" data-panel="2">
+          <div class="case-panel__top">
+            <div class="case-panel__category">Gaming Infrastructure</div>
+            <h3 class="case-panel__title">Accelerated Series A through product-integrated growth mechanics.</h3>
+            <div class="case-panel__stats">
+              <div class="case-stat">
+                <div class="case-stat__num">$14M</div>
+                <div class="case-stat__label">raised</div>
+              </div>
+              <div class="case-stat">
+                <div class="case-stat__num">250%</div>
+                <div class="case-stat__label">over target</div>
+              </div>
+            </div>
+          </div>
+          <div class="case-panel__bottom">
+            <div class="case-panel__tags">
+              <span class="case-tag">Growth Engineering</span>
+              <span class="case-tag">Influencer Partnerships</span>
+              <span class="case-tag">Paid Media</span>
+            </div>
+            <p class="case-panel__desc">Validated channels with lean budget, then scaled with specialist execution. Reduced planned spend by 65% while exceeding fundraise goals — proving product-market signal to investors.</p>
+          </div>
+        </div>
+
+        <!-- Case 4 -->
+        <div class="case-panel" data-panel="3">
+          <div class="case-panel__top">
+            <div class="case-panel__category">Compute Network Infrastructure</div>
+            <h3 class="case-panel__title">Built scalable acquisition system for AI infrastructure launch.</h3>
+            <div class="case-panel__stats">
+              <div class="case-stat">
+                <div class="case-stat__num">$500K+</div>
+                <div class="case-stat__label">revenue</div>
+              </div>
+              <div class="case-stat">
+                <div class="case-stat__num">10x</div>
+                <div class="case-stat__label">ROI</div>
+              </div>
+            </div>
+          </div>
+          <div class="case-panel__bottom">
+            <div class="case-panel__tags">
+              <span class="case-tag">Paid Media</span>
+              <span class="case-tag">Content</span>
+              <span class="case-tag">Influencer Partnerships</span>
+            </div>
+            <p class="case-panel__desc">Combined developer-focused influencer partnerships with performance marketing and founder content strategy. Specialist team executed across multiple channels to drive sustainable revenue growth.</p>
+          </div>
+        </div>
+
+        <!-- Dots -->
+        <div class="cases__dots">
+          <button class="cases__dot is-active" data-case="0" aria-label="Case 1"></button>
+          <button class="cases__dot" data-case="1" aria-label="Case 2"></button>
+          <button class="cases__dot" data-case="2" aria-label="Case 3"></button>
+          <button class="cases__dot" data-case="3" aria-label="Case 4"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section section--muted" id="stats">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__label">Track Record</div>
+        <h2 class="section__title">Numbers that matter</h2>
+      </div>
+      <div class="stats__grid">
+        <div class="stat-card fade-in fd1">
+          <div class="stat-card__number" data-count="26" data-prefix="$" data-suffix="M">$0M</div>
+          <p class="stat-card__label">Locked in 3 minutes<br><span>Reveel</span></p>
+        </div>
+        <div class="stat-card fade-in fd2">
+          <div class="stat-card__number" data-count="100" data-suffix="K">0K</div>
+          <p class="stat-card__label">Verified signups<br><span>Bloom</span></p>
+        </div>
+        <div class="stat-card fade-in fd3">
+          <div class="stat-card__number" data-count="35" data-prefix="$" data-suffix="M+">$0M+</div>
+          <p class="stat-card__label">Trading volume generated<br><span>KENDLE</span></p>
+        </div>
+        <div class="stat-card fade-in fd4">
+          <div class="stat-card__number" data-count="10" data-suffix="+">0+</div>
+          <p class="stat-card__label">Web3 projects scaled</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section" id="team">
+    <div class="container">
+      <div class="section__header fade-in">
+        <div class="section__label">The Team</div>
+        <h2 class="section__title">The people behind the engine</h2>
+      </div>
+      <div class="team__grid">
+        <div class="team-card fade-in fd1">
+          <div class="team-card__avatar">LT</div>
+          <div class="team-card__name">Lorenzo Trichard</div>
+          <div class="team-card__role">Co-Founder — Strategy & Growth</div>
+          <p class="team-card__desc">Fractional CMO for 5+ Web3 projects</p>
+          <p class="team-card__tagline">"The one who finds your PMF"</p>
+        </div>
+        <div class="team-card fade-in fd2">
+          <div class="team-card__avatar">DG</div>
+          <div class="team-card__name">Dylan Gül</div>
+          <div class="team-card__role">Co-Founder — BD & Partnerships</div>
+          <p class="team-card__desc">Deep crypto BD & exchange network</p>
+          <p class="team-card__tagline">"The one who fills your pipeline"</p>
+        </div>
+        <div class="team-card fade-in fd3">
+          <div class="team-card__avatar">VK</div>
+          <div class="team-card__name">Valeriia Komlieva</div>
+          <div class="team-card__role">Co-Founder — Project Manager</div>
+          <p class="team-card__desc">Visual identity, social content, decks</p>
+          <p class="team-card__tagline">"The one who makes it look right"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="cta-bottom">
+    <div class="fade-in">
+      <h2>Let's find your <span class="highlight">growth.</span></h2>
+    </div>
+    <p class="fade-in fd1">30-minute discovery call. No pitch deck. Just a conversation about where you are and where you want to be.</p>
+    <div class="fade-in fd2">
+      <a href="https://calendly.com" target="_blank" rel="noopener" class="btn-primary">
+        Book a Call <span>→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">KENDLE <em>Labs</em></div>
+        <div class="footer__sub">A division of KENDLE — <a href="https://kendle.xyz" target="_blank" rel="noopener">kendle.xyz</a></div>
+      </div>
+      <div class="footer__links">
+        <a href="https://twitter.com" target="_blank" rel="noopener" class="footer__link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer__link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:team@kendle.xyz" class="footer__link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          team@kendle.xyz
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-in observer
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.fade-in').forEach((el) => obs.observe(el));
+
+    // Nav scroll - smooth anchor
+    document.querySelectorAll('.nav__link').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+
+    // Case studies tabs + dots
+    const caseTabs = document.querySelectorAll('.cases__tab');
+    const casePanels = document.querySelectorAll('.case-panel');
+    const caseDots = document.querySelectorAll('.cases__dot');
+
+    const switchCase = (idx) => {
+      caseTabs.forEach((t, i) => t.classList.toggle('is-active', i === idx));
+      casePanels.forEach((p, i) => p.classList.toggle('is-active', i === idx));
+      caseDots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    };
+
+    caseTabs.forEach((tab) => {
+      tab.addEventListener('click', () => switchCase(parseInt(tab.dataset.case)));
+    });
+
+    caseDots.forEach((dot) => {
+      dot.addEventListener('click', () => switchCase(parseInt(dot.dataset.case)));
+    });
+
+    // Animated counters
+    const countObs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseInt(el.dataset.count);
+          const prefix = el.dataset.prefix || '';
+          const suffix = el.dataset.suffix || '';
+          const start = performance.now();
+          const duration = 1800;
+          const tick = (now) => {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = prefix + Math.round(eased * target) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          countObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('[data-count]').forEach((el) => countObs.observe(el));
+  </script>
+
+</body>
+</html>
