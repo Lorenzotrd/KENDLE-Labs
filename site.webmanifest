@@ -1,0 +1,21 @@
+{
+  "name": "KENDLE Labs",
+  "short_name": "KENDLE Labs",
+  "description": "Fractional GTM partner for crypto projects. Your growth team, powered by AI.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0A0F1A",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

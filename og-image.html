@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KENDLE Labs — OG Image</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'DM Sans', sans-serif;
+      background: #0A0F1A;
+      color: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .og {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      padding: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: #0A0F1A;
+      overflow: hidden;
+    }
+
+    /* Subtle grid bg */
+    .og::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
+    }
+
+    /* Green glow */
+    .og::after {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: #00FF88;
+      border-radius: 50%;
+      filter: blur(200px);
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .og__top, .og__bottom {
+      position: relative;
+      z-index: 2;
+    }
+
+    .og__logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+
+    .og__logo-box {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: #0D1221;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 44px;
+      color: #00FF88;
+    }
+
+    .og__brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+    }
+
+    .og__brand em {
+      font-style: normal;
+      color: #00FF88;
+      font-weight: 500;
+      margin-left: 4px;
+      font-size: 24px;
+    }
+
+    .og__headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 82px;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      max-width: 960px;
+    }
+
+    .og__headline .highlight {
+      color: #00FF88;
+      font-style: italic;
+    }
+
+    .og__sub {
+      margin-top: 24px;
+      font-size: 28px;
+      color: rgba(255,255,255,0.65);
+      max-width: 720px;
+      line-height: 1.5;
+    }
+
+    .og__stats {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .og__stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .og__stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 38px;
+      color: #00FF88;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .og__stat-label {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+    }
+
+    .og__url {
+      margin-left: auto;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+    }
+  </style>
+</head>
+<body>
+  <div class="og">
+    <div class="og__top">
+      <div class="og__logo">
+        <div class="og__logo-box">K</div>
+        <div class="og__brand">KENDLE <em>Labs</em></div>
+      </div>
+      <h1 class="og__headline">Your growth team,<br><span class="highlight">powered by AI.</span></h1>
+      <p class="og__sub">Fractional GTM partner for crypto projects. From PMF to scale.</p>
+    </div>
+    <div class="og__bottom">
+      <div class="og__stats">
+        <div class="og__stat">
+          <div class="og__stat-num">$26M</div>
+          <div class="og__stat-label">locked in 3 min</div>
+        </div>
+        <div class="og__stat">
+          <div class="og__stat-num">100K</div>
+          <div class="og__stat-label">signups</div>
+        </div>
+        <div class="og__stat">
+          <div class="og__stat-num">$35M+</div>
+          <div class="og__stat-label">volume generated</div>
+        </div>
+        <div class="og__url">labs.kendle.xyz</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
