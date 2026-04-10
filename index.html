@@ -335,6 +335,12 @@
     /* LVMH is already dark — skip invert, just normalize to pure black */
     .logos__item img[src*="lvmh"] {
       filter: brightness(0);
+      height: 26px;
+    }
+
+    /* Optical balance — bump Reveel slightly */
+    .logos__item img[src*="reveel"] {
+      height: 38px;
     }
 
     .logos__item:hover {
