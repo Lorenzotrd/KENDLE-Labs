@@ -373,6 +373,7 @@
     /* ===== SECTION SHARED ===== */
     .section { padding: clamp(72px, 10vh, 120px) 24px; }
     .section--muted { background: var(--bg-muted); }
+    .section--tight-top { padding-top: clamp(24px, 4vh, 48px); }
 
     .section__label {
       display: inline-block; font-family: var(--font-h);
@@ -984,10 +985,8 @@
     </div>
   </section>
 
-  <div class="divider"></div>
-
   <!-- Different -->
-  <section class="section" id="different">
+  <section class="section section--tight-top" id="different">
     <div class="container">
       <div class="section__header fade-in">
         <div class="section__label">Why Us</div>
