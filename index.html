@@ -332,6 +332,11 @@
       filter: invert(1) brightness(0.2);
     }
 
+    /* LVMH is already dark — skip invert, just normalize to pure black */
+    .logos__item img[src*="lvmh"] {
+      filter: brightness(0);
+    }
+
     .logos__item:hover {
       opacity: 1;
       transform: translateY(-2px);
@@ -869,6 +874,7 @@
     <div class="logos__track">
       <!-- Set 1 -->
       <div class="logos__set">
+        <div class="logos__item"><img src="logos/lvmh.png" alt="LVMH"></div>
         <div class="logos__item"><img src="logos/tevaera.png" alt="Tevaera"></div>
         <div class="logos__item"><img src="logos/reveel.png" alt="Reveel"></div>
         <div class="logos__item"><img src="logos/bloom.png" alt="Bloom"></div>
@@ -880,6 +886,7 @@
       </div>
       <!-- Set 2 (duplicate for seamless loop) -->
       <div class="logos__set">
+        <div class="logos__item"><img src="logos/lvmh.png" alt="LVMH"></div>
         <div class="logos__item"><img src="logos/tevaera.png" alt="Tevaera"></div>
         <div class="logos__item"><img src="logos/reveel.png" alt="Reveel"></div>
         <div class="logos__item"><img src="logos/bloom.png" alt="Bloom"></div>
