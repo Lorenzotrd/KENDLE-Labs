@@ -373,7 +373,8 @@
     /* ===== SECTION SHARED ===== */
     .section { padding: clamp(72px, 10vh, 120px) 24px; }
     .section--muted { background: var(--bg-muted); }
-    .section--tight-top { padding-top: clamp(24px, 4vh, 48px); }
+    .section--tight-top { padding-top: clamp(16px, 3vh, 32px); }
+    .section--tight-bottom { padding-bottom: clamp(24px, 4vh, 48px); }
 
     .section__label {
       display: inline-block; font-family: var(--font-h);
@@ -954,7 +955,7 @@
   </section>
 
   <!-- Paid Ads -->
-  <section class="section" id="ads">
+  <section class="section section--tight-bottom" id="ads">
     <div class="container">
       <div class="ads-banner fade-in">
         <div>
