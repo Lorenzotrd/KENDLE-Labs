@@ -470,19 +470,19 @@
 
     .logos__item {
       display: flex; align-items: center; justify-content: center;
-      height: 40px; flex-shrink: 0;
+      height: 36px; flex-shrink: 0;
       transition: opacity 0.25s ease, transform 0.25s ease;
       opacity: 0.55;
     }
 
     .logos__item img {
-      height: 32px; width: auto; max-width: none;
+      height: 28px; width: auto; max-width: none;
       object-fit: contain; display: block;
       filter: invert(1) brightness(0.2);
     }
 
-    .logos__item img[src*="lvmh"] { filter: brightness(0); height: 26px; }
-    .logos__item img[src*="reveel"] { height: 38px; }
+    .logos__item img[src*="lvmh"] { filter: brightness(0); height: 22px; }
+    .logos__item img[src*="reveel"] { height: 34px; }
 
     .logos__item:hover {
       opacity: 1; transform: translateY(-2px);
@@ -979,6 +979,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
+      display: flex; flex-direction: column;
       transition: transform 0.35s var(--ease), border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
     }
 
@@ -1007,7 +1008,10 @@
       letter-spacing: -0.03em;
     }
 
-    .team-card__body { padding: 24px; }
+    .team-card__body {
+      padding: 24px;
+      display: flex; flex-direction: column; flex: 1;
+    }
 
     .team-card__name {
       font-family: var(--font-sans); font-size: 1.1rem; font-weight: 700;
@@ -1015,9 +1019,11 @@
     }
 
     .team-card__role {
-      font-family: var(--font-mono); font-size: 0.78rem; font-weight: 500;
+      font-family: var(--font-mono); font-size: 0.76rem; font-weight: 500;
       color: var(--green); margin-bottom: 14px;
-      text-transform: uppercase; letter-spacing: 0.08em;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      min-height: 2.4em;
+      display: flex; align-items: center;
     }
 
     .team-card__badge {
@@ -1032,6 +1038,7 @@
 
     .team-card__socials {
       display: flex; gap: 12px;
+      margin-top: auto;
     }
 
     .team-card__social {
@@ -1300,15 +1307,6 @@
           Book a Discovery Call
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
         </a>
-      </div>
-      <div class="hero__trust fade-in fd6">
-        <span>Since 2021</span>
-        <span class="dot">·</span>
-        <span>70+ projects scaled</span>
-        <span class="dot">·</span>
-        <span>$200M+ generated</span>
-        <span class="dot">·</span>
-        <span>3 humans, unlimited agents</span>
       </div>
     </div>
   </section>
@@ -1756,8 +1754,7 @@
       <div class="team-grid">
         <div class="team-card fade-in fd1">
           <div class="team-card__photo">
-            <!-- TODO: replace with <img src="/team/lorenzo.jpg" alt="Lorenzo Trichard"> -->
-            <span class="team-card__initials">LT</span>
+            <img src="team/lorenzo.jpg" alt="Lorenzo Trichard" loading="lazy">
           </div>
           <div class="team-card__body">
             <div class="team-card__name">Lorenzo Trichard</div>
@@ -1777,8 +1774,7 @@
 
         <div class="team-card fade-in fd2">
           <div class="team-card__photo">
-            <!-- TODO: replace with <img src="/team/dylan.jpg" alt="Dylan Gül"> -->
-            <span class="team-card__initials">DG</span>
+            <img src="team/dylan.jpg" alt="Dylan Gül" loading="lazy">
           </div>
           <div class="team-card__body">
             <div class="team-card__name">Dylan Gül</div>
@@ -1798,8 +1794,7 @@
 
         <div class="team-card fade-in fd3">
           <div class="team-card__photo">
-            <!-- TODO: replace with <img src="/team/valeriia.jpg" alt="Valeriia Komlieva"> -->
-            <span class="team-card__initials">VK</span>
+            <img src="team/valeriia.jpg" alt="Valeriia Komlieva" loading="lazy">
           </div>
           <div class="team-card__body">
             <div class="team-card__name">Valeriia Komlieva</div>
