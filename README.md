@@ -1,6 +1,6 @@
 # KENDLE Labs — labs.kendle.xyz
 
-Landing page for KENDLE Labs, a fractional GTM partner for crypto projects.
+Landing page for KENDLE Labs, a fractional GTM partner for startups.
 
 ## Stack
 
