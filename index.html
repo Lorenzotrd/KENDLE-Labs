@@ -575,6 +575,23 @@
       font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;
     }
 
+    .triple-card__list {
+      list-style: none; padding: 0; margin: 12px 0 0;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .triple-card__list li {
+      position: relative; padding-left: 18px;
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.55;
+    }
+    .triple-card__list li::before {
+      content: ''; position: absolute; left: 0; top: 0.65em;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green);
+    }
+    .triple-card__list li strong {
+      color: var(--text); font-weight: 600;
+    }
+
     .triple-quote {
       margin-top: 56px; text-align: center;
       font-family: var(--font-sans); font-style: italic;
@@ -1359,7 +1376,13 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
           </div>
           <h3>Fractional CMO</h3>
-          <p>Strategy, positioning, GTM roadmap, narrative design. The senior marketing brain your startup needs — without the $250K salary.</p>
+          <p>The senior marketing brain your company needs.</p>
+          <p style="margin-top:10px;">We own your entire marketing function:</p>
+          <ul class="triple-card__list">
+            <li><strong>Strategy</strong> — global strategy, brand positioning, budget allocation</li>
+            <li><strong>Team management</strong> — processes, tooling, agency oversight</li>
+            <li><strong>Execution</strong> — hands-on growth marketing that drives results</li>
+          </ul>
         </div>
 
         <div class="triple-card fade-in fd2">
@@ -1375,7 +1398,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="14" x2="22" y2="14"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="14" x2="4" y2="14"/></svg>
           </div>
           <h3>Marketing Engineer</h3>
-          <p>Custom AI agents, automation pipelines, data systems. What compresses 12 months of GTM learning into 3.</p>
+          <p>We build, manage, and optimize Marketing AI Agent systems — so you run a full marketing operation 24/7, without scaling headcount.</p>
         </div>
       </div>
 
@@ -2029,6 +2052,12 @@
       procObs.observe(processTrack);
     }
   </script>
+
+  <!-- Vercel Web Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>
